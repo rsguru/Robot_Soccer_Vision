@@ -46,9 +46,9 @@ CMAKE_BINARY_DIR = /home/ecestudent/catkin_ws/build
 include robot_soccer/CMakeFiles/robot_soccer_generate_messages_eus.dir/progress.make
 
 robot_soccer/CMakeFiles/robot_soccer_generate_messages_eus: /home/ecestudent/catkin_ws/devel/share/roseus/ros/robot_soccer/msg/locations.l
+robot_soccer/CMakeFiles/robot_soccer_generate_messages_eus: /home/ecestudent/catkin_ws/devel/share/roseus/ros/robot_soccer/msg/convertedCoordinates.l
 robot_soccer/CMakeFiles/robot_soccer_generate_messages_eus: /home/ecestudent/catkin_ws/devel/share/roseus/ros/robot_soccer/srv/commcenter.l
 robot_soccer/CMakeFiles/robot_soccer_generate_messages_eus: /home/ecestudent/catkin_ws/devel/share/roseus/ros/robot_soccer/srv/curlocs.l
-robot_soccer/CMakeFiles/robot_soccer_generate_messages_eus: /home/ecestudent/catkin_ws/devel/share/roseus/ros/robot_soccer/srv/commandsent.l
 robot_soccer/CMakeFiles/robot_soccer_generate_messages_eus: /home/ecestudent/catkin_ws/devel/share/roseus/ros/robot_soccer/manifest.l
 
 /home/ecestudent/catkin_ws/devel/share/roseus/ros/robot_soccer/msg/locations.l: /opt/ros/jade/share/geneus/cmake/../../../lib/geneus/gen_eus.py
@@ -58,23 +58,24 @@ robot_soccer/CMakeFiles/robot_soccer_generate_messages_eus: /home/ecestudent/cat
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating EusLisp code from robot_soccer/locations.msg"
 	cd /home/ecestudent/catkin_ws/build/robot_soccer && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/jade/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/ecestudent/catkin_ws/src/robot_soccer/msg/locations.msg -Irobot_soccer:/home/ecestudent/catkin_ws/src/robot_soccer/msg -Istd_msgs:/opt/ros/jade/share/std_msgs/cmake/../msg -p robot_soccer -o /home/ecestudent/catkin_ws/devel/share/roseus/ros/robot_soccer/msg
 
+/home/ecestudent/catkin_ws/devel/share/roseus/ros/robot_soccer/msg/convertedCoordinates.l: /opt/ros/jade/share/geneus/cmake/../../../lib/geneus/gen_eus.py
+/home/ecestudent/catkin_ws/devel/share/roseus/ros/robot_soccer/msg/convertedCoordinates.l: /home/ecestudent/catkin_ws/src/robot_soccer/msg/convertedCoordinates.msg
+/home/ecestudent/catkin_ws/devel/share/roseus/ros/robot_soccer/msg/convertedCoordinates.l: /opt/ros/jade/share/std_msgs/cmake/../msg/Header.msg
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ecestudent/catkin_ws/build/CMakeFiles $(CMAKE_PROGRESS_2)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating EusLisp code from robot_soccer/convertedCoordinates.msg"
+	cd /home/ecestudent/catkin_ws/build/robot_soccer && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/jade/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/ecestudent/catkin_ws/src/robot_soccer/msg/convertedCoordinates.msg -Irobot_soccer:/home/ecestudent/catkin_ws/src/robot_soccer/msg -Istd_msgs:/opt/ros/jade/share/std_msgs/cmake/../msg -p robot_soccer -o /home/ecestudent/catkin_ws/devel/share/roseus/ros/robot_soccer/msg
+
 /home/ecestudent/catkin_ws/devel/share/roseus/ros/robot_soccer/srv/commcenter.l: /opt/ros/jade/share/geneus/cmake/../../../lib/geneus/gen_eus.py
 /home/ecestudent/catkin_ws/devel/share/roseus/ros/robot_soccer/srv/commcenter.l: /home/ecestudent/catkin_ws/src/robot_soccer/srv/commcenter.srv
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ecestudent/catkin_ws/build/CMakeFiles $(CMAKE_PROGRESS_2)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ecestudent/catkin_ws/build/CMakeFiles $(CMAKE_PROGRESS_3)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating EusLisp code from robot_soccer/commcenter.srv"
 	cd /home/ecestudent/catkin_ws/build/robot_soccer && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/jade/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/ecestudent/catkin_ws/src/robot_soccer/srv/commcenter.srv -Irobot_soccer:/home/ecestudent/catkin_ws/src/robot_soccer/msg -Istd_msgs:/opt/ros/jade/share/std_msgs/cmake/../msg -p robot_soccer -o /home/ecestudent/catkin_ws/devel/share/roseus/ros/robot_soccer/srv
 
 /home/ecestudent/catkin_ws/devel/share/roseus/ros/robot_soccer/srv/curlocs.l: /opt/ros/jade/share/geneus/cmake/../../../lib/geneus/gen_eus.py
 /home/ecestudent/catkin_ws/devel/share/roseus/ros/robot_soccer/srv/curlocs.l: /home/ecestudent/catkin_ws/src/robot_soccer/srv/curlocs.srv
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ecestudent/catkin_ws/build/CMakeFiles $(CMAKE_PROGRESS_3)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ecestudent/catkin_ws/build/CMakeFiles $(CMAKE_PROGRESS_4)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating EusLisp code from robot_soccer/curlocs.srv"
 	cd /home/ecestudent/catkin_ws/build/robot_soccer && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/jade/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/ecestudent/catkin_ws/src/robot_soccer/srv/curlocs.srv -Irobot_soccer:/home/ecestudent/catkin_ws/src/robot_soccer/msg -Istd_msgs:/opt/ros/jade/share/std_msgs/cmake/../msg -p robot_soccer -o /home/ecestudent/catkin_ws/devel/share/roseus/ros/robot_soccer/srv
-
-/home/ecestudent/catkin_ws/devel/share/roseus/ros/robot_soccer/srv/commandsent.l: /opt/ros/jade/share/geneus/cmake/../../../lib/geneus/gen_eus.py
-/home/ecestudent/catkin_ws/devel/share/roseus/ros/robot_soccer/srv/commandsent.l: /home/ecestudent/catkin_ws/src/robot_soccer/srv/commandsent.srv
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ecestudent/catkin_ws/build/CMakeFiles $(CMAKE_PROGRESS_4)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating EusLisp code from robot_soccer/commandsent.srv"
-	cd /home/ecestudent/catkin_ws/build/robot_soccer && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/jade/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/ecestudent/catkin_ws/src/robot_soccer/srv/commandsent.srv -Irobot_soccer:/home/ecestudent/catkin_ws/src/robot_soccer/msg -Istd_msgs:/opt/ros/jade/share/std_msgs/cmake/../msg -p robot_soccer -o /home/ecestudent/catkin_ws/devel/share/roseus/ros/robot_soccer/srv
 
 /home/ecestudent/catkin_ws/devel/share/roseus/ros/robot_soccer/manifest.l: /opt/ros/jade/share/geneus/cmake/../../../lib/geneus/gen_eus.py
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/ecestudent/catkin_ws/build/CMakeFiles $(CMAKE_PROGRESS_5)
@@ -83,9 +84,9 @@ robot_soccer/CMakeFiles/robot_soccer_generate_messages_eus: /home/ecestudent/cat
 
 robot_soccer_generate_messages_eus: robot_soccer/CMakeFiles/robot_soccer_generate_messages_eus
 robot_soccer_generate_messages_eus: /home/ecestudent/catkin_ws/devel/share/roseus/ros/robot_soccer/msg/locations.l
+robot_soccer_generate_messages_eus: /home/ecestudent/catkin_ws/devel/share/roseus/ros/robot_soccer/msg/convertedCoordinates.l
 robot_soccer_generate_messages_eus: /home/ecestudent/catkin_ws/devel/share/roseus/ros/robot_soccer/srv/commcenter.l
 robot_soccer_generate_messages_eus: /home/ecestudent/catkin_ws/devel/share/roseus/ros/robot_soccer/srv/curlocs.l
-robot_soccer_generate_messages_eus: /home/ecestudent/catkin_ws/devel/share/roseus/ros/robot_soccer/srv/commandsent.l
 robot_soccer_generate_messages_eus: /home/ecestudent/catkin_ws/devel/share/roseus/ros/robot_soccer/manifest.l
 robot_soccer_generate_messages_eus: robot_soccer/CMakeFiles/robot_soccer_generate_messages_eus.dir/build.make
 .PHONY : robot_soccer_generate_messages_eus

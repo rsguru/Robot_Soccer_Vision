@@ -254,19 +254,6 @@ gtest_main/fast:
 .PHONY : gtest_main/fast
 
 #=============================================================================
-# Target rules for targets named _robot_soccer_generate_messages_check_deps_commandsent
-
-# Build rule for target.
-_robot_soccer_generate_messages_check_deps_commandsent: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 _robot_soccer_generate_messages_check_deps_commandsent
-.PHONY : _robot_soccer_generate_messages_check_deps_commandsent
-
-# fast build rule for target.
-_robot_soccer_generate_messages_check_deps_commandsent/fast:
-	$(MAKE) -f robot_soccer/CMakeFiles/_robot_soccer_generate_messages_check_deps_commandsent.dir/build.make robot_soccer/CMakeFiles/_robot_soccer_generate_messages_check_deps_commandsent.dir/build
-.PHONY : _robot_soccer_generate_messages_check_deps_commandsent/fast
-
-#=============================================================================
 # Target rules for targets named _robot_soccer_generate_messages_check_deps_commcenter
 
 # Build rule for target.
@@ -278,6 +265,19 @@ _robot_soccer_generate_messages_check_deps_commcenter: cmake_check_build_system
 _robot_soccer_generate_messages_check_deps_commcenter/fast:
 	$(MAKE) -f robot_soccer/CMakeFiles/_robot_soccer_generate_messages_check_deps_commcenter.dir/build.make robot_soccer/CMakeFiles/_robot_soccer_generate_messages_check_deps_commcenter.dir/build
 .PHONY : _robot_soccer_generate_messages_check_deps_commcenter/fast
+
+#=============================================================================
+# Target rules for targets named _robot_soccer_generate_messages_check_deps_convertedCoordinates
+
+# Build rule for target.
+_robot_soccer_generate_messages_check_deps_convertedCoordinates: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _robot_soccer_generate_messages_check_deps_convertedCoordinates
+.PHONY : _robot_soccer_generate_messages_check_deps_convertedCoordinates
+
+# fast build rule for target.
+_robot_soccer_generate_messages_check_deps_convertedCoordinates/fast:
+	$(MAKE) -f robot_soccer/CMakeFiles/_robot_soccer_generate_messages_check_deps_convertedCoordinates.dir/build.make robot_soccer/CMakeFiles/_robot_soccer_generate_messages_check_deps_convertedCoordinates.dir/build
+.PHONY : _robot_soccer_generate_messages_check_deps_convertedCoordinates/fast
 
 #=============================================================================
 # Target rules for targets named _robot_soccer_generate_messages_check_deps_curlocs
@@ -716,8 +716,8 @@ help:
 	@echo "... tests"
 	@echo "... gtest"
 	@echo "... gtest_main"
-	@echo "... _robot_soccer_generate_messages_check_deps_commandsent"
 	@echo "... _robot_soccer_generate_messages_check_deps_commcenter"
+	@echo "... _robot_soccer_generate_messages_check_deps_convertedCoordinates"
 	@echo "... _robot_soccer_generate_messages_check_deps_curlocs"
 	@echo "... _robot_soccer_generate_messages_check_deps_locations"
 	@echo "... computer_vision"

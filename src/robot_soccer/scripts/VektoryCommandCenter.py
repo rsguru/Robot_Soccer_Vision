@@ -97,12 +97,12 @@ class Field(Frame):
           locations = rospy.ServiceProxy('locations', curlocs)
           response = locations()
           locations = pickle.loads(response.pickle)
-          self.ball_x = meterToPixel(locations.ball.x)
-          self.ball_y = meterToPixel(locations.ball.y)
+          self.ball_x = meterToPixel(locations.ball_x)
+          self.ball_y = meterToPixel(locations.ball_y)
           self.canvas.coords(self.ball,*self.getBallCoord())
-          self.home_x = meterToPixel(locations.home1.x)
-          self.home_y = meterToPixel(locations.home1.y)
-          self.home_theta = locations.home1.theta
+          self.home_x = meterToPixel(locations.home1_x)
+          self.home_y = meterToPixel(locations.home1_y)
+          self.home_theta = locations.home1_theta
           self.canvas.coords(self.home,*self.getHomeCoord())
           #self.away_x = meterToPixel(locations.away1.x)
           #self.away_y = meterToPixel(locations.away1.y)

@@ -8,7 +8,7 @@ import struct
 import std_msgs.msg
 
 class locations(genpy.Message):
-  _md5sum = "a28bb17570907c28d276ade19cd9ea89"
+  _md5sum = "48d9e5afdb93afb928ab25a7f406ab6f"
   _type = "robot_soccer/locations"
   _has_header = True #flag to mark the presence of a Header object
   _full_text = """Header header
@@ -17,6 +17,8 @@ int32 home1_y
 int32 home1_theta
 int32 ball_x
 int32 ball_y
+int32 field_width
+int32 field_height
 
 ================================================================================
 MSG: std_msgs/Header
@@ -37,8 +39,8 @@ time stamp
 string frame_id
 
 """
-  __slots__ = ['header','home1_x','home1_y','home1_theta','ball_x','ball_y']
-  _slot_types = ['std_msgs/Header','int32','int32','int32','int32','int32']
+  __slots__ = ['header','home1_x','home1_y','home1_theta','ball_x','ball_y','field_width','field_height']
+  _slot_types = ['std_msgs/Header','int32','int32','int32','int32','int32','int32','int32']
 
   def __init__(self, *args, **kwds):
     """
@@ -48,7 +50,7 @@ string frame_id
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       header,home1_x,home1_y,home1_theta,ball_x,ball_y
+       header,home1_x,home1_y,home1_theta,ball_x,ball_y,field_width,field_height
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -69,6 +71,10 @@ string frame_id
         self.ball_x = 0
       if self.ball_y is None:
         self.ball_y = 0
+      if self.field_width is None:
+        self.field_width = 0
+      if self.field_height is None:
+        self.field_height = 0
     else:
       self.header = std_msgs.msg.Header()
       self.home1_x = 0
@@ -76,6 +82,8 @@ string frame_id
       self.home1_theta = 0
       self.ball_x = 0
       self.ball_y = 0
+      self.field_width = 0
+      self.field_height = 0
 
   def _get_types(self):
     """
@@ -101,7 +109,7 @@ string frame_id
       else:
         buff.write(struct.pack('<I%ss'%length, length, _x))
       _x = self
-      buff.write(_struct_5i.pack(_x.home1_x, _x.home1_y, _x.home1_theta, _x.ball_x, _x.ball_y))
+      buff.write(_struct_7i.pack(_x.home1_x, _x.home1_y, _x.home1_theta, _x.ball_x, _x.ball_y, _x.field_width, _x.field_height))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(_x))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(_x))))
 
@@ -129,8 +137,8 @@ string frame_id
         self.header.frame_id = str[start:end]
       _x = self
       start = end
-      end += 20
-      (_x.home1_x, _x.home1_y, _x.home1_theta, _x.ball_x, _x.ball_y,) = _struct_5i.unpack(str[start:end])
+      end += 28
+      (_x.home1_x, _x.home1_y, _x.home1_theta, _x.ball_x, _x.ball_y, _x.field_width, _x.field_height,) = _struct_7i.unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
@@ -155,7 +163,7 @@ string frame_id
       else:
         buff.write(struct.pack('<I%ss'%length, length, _x))
       _x = self
-      buff.write(_struct_5i.pack(_x.home1_x, _x.home1_y, _x.home1_theta, _x.ball_x, _x.ball_y))
+      buff.write(_struct_7i.pack(_x.home1_x, _x.home1_y, _x.home1_theta, _x.ball_x, _x.ball_y, _x.field_width, _x.field_height))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(_x))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(_x))))
 
@@ -184,12 +192,12 @@ string frame_id
         self.header.frame_id = str[start:end]
       _x = self
       start = end
-      end += 20
-      (_x.home1_x, _x.home1_y, _x.home1_theta, _x.ball_x, _x.ball_y,) = _struct_5i.unpack(str[start:end])
+      end += 28
+      (_x.home1_x, _x.home1_y, _x.home1_theta, _x.ball_x, _x.ball_y, _x.field_width, _x.field_height,) = _struct_7i.unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
 
 _struct_I = genpy.struct_I
 _struct_3I = struct.Struct("<3I")
-_struct_5i = struct.Struct("<5i")
+_struct_7i = struct.Struct("<7i")

@@ -1,7 +1,7 @@
 # generated from genmsg/cmake/pkg-genmsg.context.in
 
-messages_str = "/home/ecestudent/catkin_ws/src/robot_soccer/msg/locations.msg"
-services_str = "/home/ecestudent/catkin_ws/src/robot_soccer/srv/curlocs.srv;/home/ecestudent/catkin_ws/src/robot_soccer/srv/commcenter.srv;/home/ecestudent/catkin_ws/src/robot_soccer/srv/commandsent.srv"
+messages_str = "/home/ecestudent/catkin_ws/src/robot_soccer/msg/locations.msg;/home/ecestudent/catkin_ws/src/robot_soccer/msg/convertedCoordinates.msg"
+services_str = "/home/ecestudent/catkin_ws/src/robot_soccer/srv/curlocs.srv;/home/ecestudent/catkin_ws/src/robot_soccer/srv/commcenter.srv"
 pkg_name = "robot_soccer"
 dependencies_str = "std_msgs"
 langs = "gencpp;geneus;genlisp;genpy"

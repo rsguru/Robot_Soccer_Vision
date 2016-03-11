@@ -7,6 +7,9 @@
 //============================================================================
 
 #include "Robot.h"
+#include <iostream>
+#include <fstream>
+
 
 using namespace cv;
 
@@ -38,14 +41,18 @@ void Robot::drawRobot(Mat &frame) {
 
   int real_x = this->get_x_pos();
   int real_y = this->get_y_pos();
+  printf("\n robot x: %d \n",real_x);
+  printf("\n robot y: %d \n",real_y);
+  printf("\n angle: %d \n",angle);
 
   // TODO there may be some error in this value to do compensating for the noise
-  circle(frame,cv::Point(x,y),7, Scalar(0,0,255));
+  circle(frame,cv::Point(x,y),10, Scalar(0,0,255));
   putText(frame,"(" + intToString(real_x)+ "," + intToString(real_y) + ")",
           Point(x,y+20),1,1,Scalar(0,255,0));
   putText(frame, "Robot", Point(x+17,y+35),1,1,Scalar(0,255,0));
   putText(frame, "Team " + intToString(team), Point(x+17,y+50),1,1,Scalar(0,255,0));
   putText(frame, "Angle: " + intToString(angle), Point(x+17,y+65),1,1,Scalar(0,255,0));
+
 }
 
 // Generate prompts to calibrate colors for this robot
@@ -77,7 +84,7 @@ void Robot::calibrateRobot(VideoCapture capture) {
    while (1) {
       //store image to matrix
       capture.read(cameraFeed);
-      undistortImage(cameraFeed);
+      //undistortImage(cameraFeed);
 
       //convert frame from BGR to HSV colorspace
       field_origin_x = field_center_x - (field_width/2);
@@ -187,10 +194,10 @@ void Robot::trackFilteredRobot(Mat threshold, Mat HSV, Mat &cameraFeed) {
     }
 
     // Mark the bigger circle
-    circle(cameraFeed, centerPoints[c1], 6, Scalar(255,0,0), -1, 8, 0);
+    circle(cameraFeed, centerPoints[c1], 9, Scalar(255,0,0), -1, 8, 0);
 
     //Draw line between centers
-    line(cameraFeed, centerPoints[c1], centerPoints[c2], Scalar(0,0,255), 2, 8, 0);
+    line(cameraFeed, centerPoints[c1], centerPoints[c2], Scalar(0,0,255), 4, 8, 0);
 
     //Calculate the angle
     float angle = (atan2(centerPoints[c2].y - centerPoints[c1].y,
@@ -205,13 +212,13 @@ void Robot::trackFilteredRobot(Mat threshold, Mat HSV, Mat &cameraFeed) {
       intAngle = 360-intAngle;
     }
 
-    // Correct angle to the Robot's X-axis
-    //if (intAngle > 90) {
-    //  intAngle = intAngle - 90;
-    //}
-    //else {
-    //  intAngle = 270 + intAngle;
-    //}
+//    // Correct angle to the Robot's X-axis
+//    if (intAngle > 90) {
+//      intAngle = intAngle - 90;
+//    }
+//    else {
+//      intAngle = 270 + intAngle;
+//    }
 
     // Center the points of the robot
     int real_center_x;
@@ -220,7 +227,7 @@ void Robot::trackFilteredRobot(Mat threshold, Mat HSV, Mat &cameraFeed) {
     real_center_x = (int)(centerPoints[c1].x + centerPoints[c2].x)/2;
     real_center_y = (int)(centerPoints[c1].y + centerPoints[c2].y)/2;
 
-    circle(cameraFeed, Point(real_center_x, real_center_y), 3, Scalar(255,255,255), -1, 8, 0);
+    circle(cameraFeed, Point(real_center_x, real_center_y), 3, Scalar(255,0,0), -1, 8, 0);
 
     Point fieldPosition = convertCoordinates(Point(real_center_x,
                                                    real_center_y));

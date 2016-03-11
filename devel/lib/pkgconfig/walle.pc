@@ -1,0 +1,8 @@
+prefix=/home/ecestudent/catkin_ws/devel
+
+Name: walle
+Description: Description of walle
+Version: 0.0.0
+Cflags: -I/home/ecestudent/catkin_ws/devel/include
+Libs: -L/home/ecestudent/catkin_ws/devel/lib 
+Requires: message_runtime

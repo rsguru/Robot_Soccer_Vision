@@ -16,7 +16,7 @@
 
 (defclass robot_soccer::locations
   :super ros::object
-  :slots (_header _home1_x _home1_y _home1_theta _ball_x _ball_y ))
+  :slots (_header _home1_x _home1_y _home1_theta _ball_x _ball_y _field_width _field_height ))
 
 (defmethod robot_soccer::locations
   (:init
@@ -27,6 +27,8 @@
     ((:home1_theta __home1_theta) 0)
     ((:ball_x __ball_x) 0)
     ((:ball_y __ball_y) 0)
+    ((:field_width __field_width) 0)
+    ((:field_height __field_height) 0)
     )
    (send-super :init)
    (setq _header __header)
@@ -35,6 +37,8 @@
    (setq _home1_theta (round __home1_theta))
    (setq _ball_x (round __ball_x))
    (setq _ball_y (round __ball_y))
+   (setq _field_width (round __field_width))
+   (setq _field_height (round __field_height))
    self)
   (:header
    (&rest __header)
@@ -58,6 +62,12 @@
   (:ball_y
    (&optional __ball_y)
    (if __ball_y (setq _ball_y __ball_y)) _ball_y)
+  (:field_width
+   (&optional __field_width)
+   (if __field_width (setq _field_width __field_width)) _field_width)
+  (:field_height
+   (&optional __field_height)
+   (if __field_height (setq _field_height __field_height)) _field_height)
   (:serialization-length
    ()
    (+
@@ -72,6 +82,10 @@
     ;; int32 _ball_x
     4
     ;; int32 _ball_y
+    4
+    ;; int32 _field_width
+    4
+    ;; int32 _field_height
     4
     ))
   (:serialize
@@ -90,6 +104,10 @@
        (write-long _ball_x s)
      ;; int32 _ball_y
        (write-long _ball_y s)
+     ;; int32 _field_width
+       (write-long _field_width s)
+     ;; int32 _field_height
+       (write-long _field_height s)
      ;;
      (if (null strm) (get-output-stream-string s))))
   (:deserialize
@@ -106,11 +124,15 @@
      (setq _ball_x (sys::peek buf ptr- :integer)) (incf ptr- 4)
    ;; int32 _ball_y
      (setq _ball_y (sys::peek buf ptr- :integer)) (incf ptr- 4)
+   ;; int32 _field_width
+     (setq _field_width (sys::peek buf ptr- :integer)) (incf ptr- 4)
+   ;; int32 _field_height
+     (setq _field_height (sys::peek buf ptr- :integer)) (incf ptr- 4)
    ;;
    self)
   )
 
-(setf (get robot_soccer::locations :md5sum-) "a28bb17570907c28d276ade19cd9ea89")
+(setf (get robot_soccer::locations :md5sum-) "48d9e5afdb93afb928ab25a7f406ab6f")
 (setf (get robot_soccer::locations :datatype-) "robot_soccer/locations")
 (setf (get robot_soccer::locations :definition-)
       "Header header
@@ -119,6 +141,8 @@ int32 home1_y
 int32 home1_theta
 int32 ball_x
 int32 ball_y
+int32 field_width
+int32 field_height
 
 ================================================================================
 MSG: std_msgs/Header
@@ -142,6 +166,6 @@ string frame_id
 
 
 
-(provide :robot_soccer/locations "a28bb17570907c28d276ade19cd9ea89")
+(provide :robot_soccer/locations "48d9e5afdb93afb928ab25a7f406ab6f")
 
 

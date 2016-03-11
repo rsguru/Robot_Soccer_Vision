@@ -33,14 +33,16 @@ IF(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 ENDIF(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 
 IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/robot_soccer/msg" TYPE FILE FILES "/home/ecestudent/catkin_ws/src/robot_soccer/msg/locations.msg")
+  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/robot_soccer/msg" TYPE FILE FILES
+    "/home/ecestudent/catkin_ws/src/robot_soccer/msg/locations.msg"
+    "/home/ecestudent/catkin_ws/src/robot_soccer/msg/convertedCoordinates.msg"
+    )
 ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
 
 IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
   FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/robot_soccer/srv" TYPE FILE FILES
     "/home/ecestudent/catkin_ws/src/robot_soccer/srv/curlocs.srv"
     "/home/ecestudent/catkin_ws/src/robot_soccer/srv/commcenter.srv"
-    "/home/ecestudent/catkin_ws/src/robot_soccer/srv/commandsent.srv"
     )
 ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
 

@@ -1,6 +1,6 @@
 # generated from genmsg/cmake/pkg-genmsg.cmake.em
 
-message(STATUS "robot_soccer: 1 messages, 3 services")
+message(STATUS "robot_soccer: 2 messages, 2 services")
 
 set(MSG_I_FLAGS "-Irobot_soccer:/home/ecestudent/catkin_ws/src/robot_soccer/msg;-Istd_msgs:/opt/ros/jade/share/std_msgs/cmake/../msg")
 
@@ -26,14 +26,14 @@ add_custom_target(_robot_soccer_generate_messages_check_deps_${_filename}
   COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "robot_soccer" "/home/ecestudent/catkin_ws/src/robot_soccer/srv/curlocs.srv" ""
 )
 
-get_filename_component(_filename "/home/ecestudent/catkin_ws/src/robot_soccer/srv/commandsent.srv" NAME_WE)
-add_custom_target(_robot_soccer_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "robot_soccer" "/home/ecestudent/catkin_ws/src/robot_soccer/srv/commandsent.srv" ""
-)
-
 get_filename_component(_filename "/home/ecestudent/catkin_ws/src/robot_soccer/msg/locations.msg" NAME_WE)
 add_custom_target(_robot_soccer_generate_messages_check_deps_${_filename}
   COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "robot_soccer" "/home/ecestudent/catkin_ws/src/robot_soccer/msg/locations.msg" "std_msgs/Header"
+)
+
+get_filename_component(_filename "/home/ecestudent/catkin_ws/src/robot_soccer/msg/convertedCoordinates.msg" NAME_WE)
+add_custom_target(_robot_soccer_generate_messages_check_deps_${_filename}
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "robot_soccer" "/home/ecestudent/catkin_ws/src/robot_soccer/msg/convertedCoordinates.msg" "std_msgs/Header"
 )
 
 #
@@ -48,6 +48,12 @@ _generate_msg_cpp(robot_soccer
   "/opt/ros/jade/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/robot_soccer
 )
+_generate_msg_cpp(robot_soccer
+  "/home/ecestudent/catkin_ws/src/robot_soccer/msg/convertedCoordinates.msg"
+  "${MSG_I_FLAGS}"
+  "/opt/ros/jade/share/std_msgs/cmake/../msg/Header.msg"
+  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/robot_soccer
+)
 
 ### Generating Services
 _generate_srv_cpp(robot_soccer
@@ -58,12 +64,6 @@ _generate_srv_cpp(robot_soccer
 )
 _generate_srv_cpp(robot_soccer
   "/home/ecestudent/catkin_ws/src/robot_soccer/srv/curlocs.srv"
-  "${MSG_I_FLAGS}"
-  ""
-  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/robot_soccer
-)
-_generate_srv_cpp(robot_soccer
-  "/home/ecestudent/catkin_ws/src/robot_soccer/srv/commandsent.srv"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/robot_soccer
@@ -85,9 +85,9 @@ get_filename_component(_filename "/home/ecestudent/catkin_ws/src/robot_soccer/sr
 add_dependencies(robot_soccer_generate_messages_cpp _robot_soccer_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/ecestudent/catkin_ws/src/robot_soccer/srv/curlocs.srv" NAME_WE)
 add_dependencies(robot_soccer_generate_messages_cpp _robot_soccer_generate_messages_check_deps_${_filename})
-get_filename_component(_filename "/home/ecestudent/catkin_ws/src/robot_soccer/srv/commandsent.srv" NAME_WE)
-add_dependencies(robot_soccer_generate_messages_cpp _robot_soccer_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/ecestudent/catkin_ws/src/robot_soccer/msg/locations.msg" NAME_WE)
+add_dependencies(robot_soccer_generate_messages_cpp _robot_soccer_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/ecestudent/catkin_ws/src/robot_soccer/msg/convertedCoordinates.msg" NAME_WE)
 add_dependencies(robot_soccer_generate_messages_cpp _robot_soccer_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -105,6 +105,12 @@ _generate_msg_eus(robot_soccer
   "/opt/ros/jade/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/robot_soccer
 )
+_generate_msg_eus(robot_soccer
+  "/home/ecestudent/catkin_ws/src/robot_soccer/msg/convertedCoordinates.msg"
+  "${MSG_I_FLAGS}"
+  "/opt/ros/jade/share/std_msgs/cmake/../msg/Header.msg"
+  ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/robot_soccer
+)
 
 ### Generating Services
 _generate_srv_eus(robot_soccer
@@ -115,12 +121,6 @@ _generate_srv_eus(robot_soccer
 )
 _generate_srv_eus(robot_soccer
   "/home/ecestudent/catkin_ws/src/robot_soccer/srv/curlocs.srv"
-  "${MSG_I_FLAGS}"
-  ""
-  ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/robot_soccer
-)
-_generate_srv_eus(robot_soccer
-  "/home/ecestudent/catkin_ws/src/robot_soccer/srv/commandsent.srv"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/robot_soccer
@@ -142,9 +142,9 @@ get_filename_component(_filename "/home/ecestudent/catkin_ws/src/robot_soccer/sr
 add_dependencies(robot_soccer_generate_messages_eus _robot_soccer_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/ecestudent/catkin_ws/src/robot_soccer/srv/curlocs.srv" NAME_WE)
 add_dependencies(robot_soccer_generate_messages_eus _robot_soccer_generate_messages_check_deps_${_filename})
-get_filename_component(_filename "/home/ecestudent/catkin_ws/src/robot_soccer/srv/commandsent.srv" NAME_WE)
-add_dependencies(robot_soccer_generate_messages_eus _robot_soccer_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/ecestudent/catkin_ws/src/robot_soccer/msg/locations.msg" NAME_WE)
+add_dependencies(robot_soccer_generate_messages_eus _robot_soccer_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/ecestudent/catkin_ws/src/robot_soccer/msg/convertedCoordinates.msg" NAME_WE)
 add_dependencies(robot_soccer_generate_messages_eus _robot_soccer_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -162,6 +162,12 @@ _generate_msg_lisp(robot_soccer
   "/opt/ros/jade/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/robot_soccer
 )
+_generate_msg_lisp(robot_soccer
+  "/home/ecestudent/catkin_ws/src/robot_soccer/msg/convertedCoordinates.msg"
+  "${MSG_I_FLAGS}"
+  "/opt/ros/jade/share/std_msgs/cmake/../msg/Header.msg"
+  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/robot_soccer
+)
 
 ### Generating Services
 _generate_srv_lisp(robot_soccer
@@ -172,12 +178,6 @@ _generate_srv_lisp(robot_soccer
 )
 _generate_srv_lisp(robot_soccer
   "/home/ecestudent/catkin_ws/src/robot_soccer/srv/curlocs.srv"
-  "${MSG_I_FLAGS}"
-  ""
-  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/robot_soccer
-)
-_generate_srv_lisp(robot_soccer
-  "/home/ecestudent/catkin_ws/src/robot_soccer/srv/commandsent.srv"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/robot_soccer
@@ -199,9 +199,9 @@ get_filename_component(_filename "/home/ecestudent/catkin_ws/src/robot_soccer/sr
 add_dependencies(robot_soccer_generate_messages_lisp _robot_soccer_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/ecestudent/catkin_ws/src/robot_soccer/srv/curlocs.srv" NAME_WE)
 add_dependencies(robot_soccer_generate_messages_lisp _robot_soccer_generate_messages_check_deps_${_filename})
-get_filename_component(_filename "/home/ecestudent/catkin_ws/src/robot_soccer/srv/commandsent.srv" NAME_WE)
-add_dependencies(robot_soccer_generate_messages_lisp _robot_soccer_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/ecestudent/catkin_ws/src/robot_soccer/msg/locations.msg" NAME_WE)
+add_dependencies(robot_soccer_generate_messages_lisp _robot_soccer_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/ecestudent/catkin_ws/src/robot_soccer/msg/convertedCoordinates.msg" NAME_WE)
 add_dependencies(robot_soccer_generate_messages_lisp _robot_soccer_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -219,6 +219,12 @@ _generate_msg_py(robot_soccer
   "/opt/ros/jade/share/std_msgs/cmake/../msg/Header.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/robot_soccer
 )
+_generate_msg_py(robot_soccer
+  "/home/ecestudent/catkin_ws/src/robot_soccer/msg/convertedCoordinates.msg"
+  "${MSG_I_FLAGS}"
+  "/opt/ros/jade/share/std_msgs/cmake/../msg/Header.msg"
+  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/robot_soccer
+)
 
 ### Generating Services
 _generate_srv_py(robot_soccer
@@ -229,12 +235,6 @@ _generate_srv_py(robot_soccer
 )
 _generate_srv_py(robot_soccer
   "/home/ecestudent/catkin_ws/src/robot_soccer/srv/curlocs.srv"
-  "${MSG_I_FLAGS}"
-  ""
-  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/robot_soccer
-)
-_generate_srv_py(robot_soccer
-  "/home/ecestudent/catkin_ws/src/robot_soccer/srv/commandsent.srv"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/robot_soccer
@@ -256,9 +256,9 @@ get_filename_component(_filename "/home/ecestudent/catkin_ws/src/robot_soccer/sr
 add_dependencies(robot_soccer_generate_messages_py _robot_soccer_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/ecestudent/catkin_ws/src/robot_soccer/srv/curlocs.srv" NAME_WE)
 add_dependencies(robot_soccer_generate_messages_py _robot_soccer_generate_messages_check_deps_${_filename})
-get_filename_component(_filename "/home/ecestudent/catkin_ws/src/robot_soccer/srv/commandsent.srv" NAME_WE)
-add_dependencies(robot_soccer_generate_messages_py _robot_soccer_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/ecestudent/catkin_ws/src/robot_soccer/msg/locations.msg" NAME_WE)
+add_dependencies(robot_soccer_generate_messages_py _robot_soccer_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/ecestudent/catkin_ws/src/robot_soccer/msg/convertedCoordinates.msg" NAME_WE)
 add_dependencies(robot_soccer_generate_messages_py _robot_soccer_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility

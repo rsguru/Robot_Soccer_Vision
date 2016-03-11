@@ -150,20 +150,6 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-robot_soccer/CMakeFiles/_robot_soccer_generate_messages_check_deps_commandsent.dir/rule:
-	cd /home/ecestudent/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 robot_soccer/CMakeFiles/_robot_soccer_generate_messages_check_deps_commandsent.dir/rule
-.PHONY : robot_soccer/CMakeFiles/_robot_soccer_generate_messages_check_deps_commandsent.dir/rule
-
-# Convenience name for target.
-_robot_soccer_generate_messages_check_deps_commandsent: robot_soccer/CMakeFiles/_robot_soccer_generate_messages_check_deps_commandsent.dir/rule
-.PHONY : _robot_soccer_generate_messages_check_deps_commandsent
-
-# fast build rule for target.
-_robot_soccer_generate_messages_check_deps_commandsent/fast:
-	cd /home/ecestudent/catkin_ws/build && $(MAKE) -f robot_soccer/CMakeFiles/_robot_soccer_generate_messages_check_deps_commandsent.dir/build.make robot_soccer/CMakeFiles/_robot_soccer_generate_messages_check_deps_commandsent.dir/build
-.PHONY : _robot_soccer_generate_messages_check_deps_commandsent/fast
-
-# Convenience name for target.
 robot_soccer/CMakeFiles/_robot_soccer_generate_messages_check_deps_commcenter.dir/rule:
 	cd /home/ecestudent/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 robot_soccer/CMakeFiles/_robot_soccer_generate_messages_check_deps_commcenter.dir/rule
 .PHONY : robot_soccer/CMakeFiles/_robot_soccer_generate_messages_check_deps_commcenter.dir/rule
@@ -176,6 +162,20 @@ _robot_soccer_generate_messages_check_deps_commcenter: robot_soccer/CMakeFiles/_
 _robot_soccer_generate_messages_check_deps_commcenter/fast:
 	cd /home/ecestudent/catkin_ws/build && $(MAKE) -f robot_soccer/CMakeFiles/_robot_soccer_generate_messages_check_deps_commcenter.dir/build.make robot_soccer/CMakeFiles/_robot_soccer_generate_messages_check_deps_commcenter.dir/build
 .PHONY : _robot_soccer_generate_messages_check_deps_commcenter/fast
+
+# Convenience name for target.
+robot_soccer/CMakeFiles/_robot_soccer_generate_messages_check_deps_convertedCoordinates.dir/rule:
+	cd /home/ecestudent/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 robot_soccer/CMakeFiles/_robot_soccer_generate_messages_check_deps_convertedCoordinates.dir/rule
+.PHONY : robot_soccer/CMakeFiles/_robot_soccer_generate_messages_check_deps_convertedCoordinates.dir/rule
+
+# Convenience name for target.
+_robot_soccer_generate_messages_check_deps_convertedCoordinates: robot_soccer/CMakeFiles/_robot_soccer_generate_messages_check_deps_convertedCoordinates.dir/rule
+.PHONY : _robot_soccer_generate_messages_check_deps_convertedCoordinates
+
+# fast build rule for target.
+_robot_soccer_generate_messages_check_deps_convertedCoordinates/fast:
+	cd /home/ecestudent/catkin_ws/build && $(MAKE) -f robot_soccer/CMakeFiles/_robot_soccer_generate_messages_check_deps_convertedCoordinates.dir/build.make robot_soccer/CMakeFiles/_robot_soccer_generate_messages_check_deps_convertedCoordinates.dir/build
+.PHONY : _robot_soccer_generate_messages_check_deps_convertedCoordinates/fast
 
 # Convenience name for target.
 robot_soccer/CMakeFiles/_robot_soccer_generate_messages_check_deps_curlocs.dir/rule:
@@ -727,8 +727,8 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... _robot_soccer_generate_messages_check_deps_commandsent"
 	@echo "... _robot_soccer_generate_messages_check_deps_commcenter"
+	@echo "... _robot_soccer_generate_messages_check_deps_convertedCoordinates"
 	@echo "... _robot_soccer_generate_messages_check_deps_curlocs"
 	@echo "... _robot_soccer_generate_messages_check_deps_locations"
 	@echo "... computer_vision"

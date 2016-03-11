@@ -1,0 +1,23 @@
+(cl:defpackage gazebo_msgs-msg
+  (:use )
+  (:export
+   "<CONTACTSSTATE>"
+   "CONTACTSSTATE"
+   "<MODELSTATE>"
+   "MODELSTATE"
+   "<MODELSTATES>"
+   "MODELSTATES"
+   "<WORLDSTATE>"
+   "WORLDSTATE"
+   "<LINKSTATE>"
+   "LINKSTATE"
+   "<ODEPHYSICS>"
+   "ODEPHYSICS"
+   "<ODEJOINTPROPERTIES>"
+   "ODEJOINTPROPERTIES"
+   "<LINKSTATES>"
+   "LINKSTATES"
+   "<CONTACTSTATE>"
+   "CONTACTSTATE"
+  ))
+

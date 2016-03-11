@@ -547,7 +547,7 @@ system("curl -s http://192.168.1.48:8080/stream?topic=/image&dummy=param.mjpg > 
 //This thread converts JPEGs into Mats and undistorts them.
 void * processorThread(void * notUsed){
 printf("\n in processorThread");
-	const string videoStreamAddress = "http://192.168.1.79:8080/stream?topic=/image&dummy=param.mjpg";
+	const string videoStreamAddress = "http://192.168.1.78:8080/stream?topic=/image&dummy=param.mjpg";
 
 	VideoCapture capture;
 
@@ -640,7 +640,7 @@ int main(int argc, char* argv[]) {
 
 	//video capture object to acquire webcam feed  http://192.168.1.90/mjpg/video.mjpg
 	//const string videoStreamAddress = "http://192.168.1.10:8080/stream?topic=/image&dummy=param.mjpg";
-	const string videoStreamAddress = "http://192.168.1.79:8080/stream?topic=/image&dummy=param.mjpg";
+	const string videoStreamAddress = "http://192.168.1.78:8080/stream?topic=/image&dummy=param.mjpg";
 
 	VideoCapture capture;
 
@@ -769,6 +769,8 @@ printf("\ninitializing ros");
     coordinates.home1_theta = home1.getAngle();
     coordinates.ball_x = ball.get_x_pos();
     coordinates.ball_y = ball.get_y_pos();
+    coordinates.field_width = field_width;
+    coordinates.field_height = field_height;
     // coordinates.away1_x = away1.get_x_pos();
     // coordinates.away1_y = away1.get_y_pos();
     // coordinates.away1_theta = away1.getAngle();
@@ -780,6 +782,7 @@ printf("\ninitializing ros");
     printf("home1_theta: %d\n", coordinates.home1_theta);
     printf("ball_x: %d\n", coordinates.ball_x);
     printf("ball_y: %d\n", coordinates.ball_y);
+    printf("timeStamp header: %d\n", coordinates.header.stamp.sec);
     if (!(printCounter%PRINT_FREQ)) {
       ROS_INFO("\n  timestamp: %u.%09u\n  ", coordinates.header.stamp.sec, coordinates.header.stamp.nsec);
       //ROS_INFO("\n  Ball_x: %d\n  Ball_y: %d\n", coordinates.ball_x, coordinates.ball_y);

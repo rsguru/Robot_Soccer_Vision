@@ -51,6 +51,7 @@ find_package(catkin REQUIRED COMPONENTS
  add_message_files(
    FILES
    locations.msg
+   convertedCoordinates.msg
  )
 #   Message1.msg
 #   Message2.msg
@@ -61,7 +62,7 @@ find_package(catkin REQUIRED COMPONENTS
    FILES
    curlocs.srv
    commcenter.srv
-   commandsent.srv
+#  commandsent.srv
 #   Service1.srv
 #   Service2.srv
  )
@@ -201,6 +202,3 @@ include_directories(include ${catkin_INCLUDE_DIRS}, include/robot_soccer)
 
 add_executable(computer_vision src/ComputerVision.cpp src/Ball.cpp src/Object.cpp src/Robot.cpp)
 target_link_libraries(computer_vision ${catkin_LIBRARIES})
-
-      
-
