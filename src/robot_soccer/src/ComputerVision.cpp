@@ -286,7 +286,15 @@ string intToString(int number) {
   ss << number;
   return ss.str();
 }
-
+// runs the blur image
+void blurImage(Mat &source) {
+  Mat dst;
+  Size imageSize = source.size();
+  Mat temp = source.clone();
+  GaussianBlur(source,dst,Size(5,5),1,1);
+  //imshow( "Gaussian filter", dst );
+  source = dst;
+}
 // Runs the undistortion
 void undistortImage(Mat &source) {
   // Setup Distortion matrices
@@ -402,6 +410,8 @@ void calibrateField(VideoCapture capture) {
   // Wait forever until user sets the values
   while (1) {
     capture.read(cameraFeed);
+    //blur the image
+//    blurImage(cameraFeed);
     //undistortImage(cameraFeed);
 
     // Wait for user to set values
@@ -453,9 +463,9 @@ void runFullCalibration(VideoCapture capture) {
   calibrateField(capture);
   ball.calibrateBall(capture);
   home1.calibrateRobot(capture);
-  //Home2.calibrateRobot(capture);
-  //away1.calibrateRobot(capture);
-  //Away2.calibrateRobot(capture);
+  home2.calibrateRobot(capture);
+  away1.calibrateRobot(capture);
+  away2.calibrateRobot(capture);
   saveSettings();
 }
 
@@ -547,7 +557,7 @@ system("curl -s http://192.168.1.48:8080/stream?topic=/image&dummy=param.mjpg > 
 //This thread converts JPEGs into Mats and undistorts them.
 void * processorThread(void * notUsed){
 printf("\n in processorThread");
-	const string videoStreamAddress = "http://192.168.1.78:8080/stream?topic=/image&dummy=param.mjpg";
+	const string videoStreamAddress = "http://192.168.1.79:8080/stream?topic=/image&dummy=param.mjpg";
 
 	VideoCapture capture;
 
@@ -570,7 +580,7 @@ printf("\n in processorThread");
     //if (value < MIN_BUFFER_SIZE){
       //frameMat.timestamp = frameRaw.timestamp;
       capture.read(frameMat.image); //= imdecode(frameRaw.image, CV_LOAD_IMAGE_COLOR);
-
+//      blurImage(frameMat.image);
      //undistortImage(frameMat.image);
       frameMatFifo.push(frameMat);
       sem_post(&frameMatSema);
@@ -640,7 +650,7 @@ int main(int argc, char* argv[]) {
 
 	//video capture object to acquire webcam feed  http://192.168.1.90/mjpg/video.mjpg
 	//const string videoStreamAddress = "http://192.168.1.10:8080/stream?topic=/image&dummy=param.mjpg";
-	const string videoStreamAddress = "http://192.168.1.78:8080/stream?topic=/image&dummy=param.mjpg";
+	const string videoStreamAddress = "http://192.168.1.79:8080/stream?topic=/image&dummy=param.mjpg";
 
 	VideoCapture capture;
 
@@ -728,21 +738,31 @@ printf("\ninitializing ros");
     // sem_wait(&trackBallEnd);
     // sem_wait(&trackHome1End);
     // sem_wait(&trackAway1End);
-    // Track Ball
- // printf("\n Track Ball\n");
+// Track Ball
+    // printf("\n Track Ball\n");
     inRange(HSV,ball.getHSVmin(),ball.getHSVmax(),threshold);
     ball.trackFilteredBall(threshold,HSV,cameraFeed);
 
-    // Track Home 1
- // printf("\n Track Home 1\n");
+// Track Home 1
+    // printf("\n Track Home 1\n");
     inRange(HSV,home1.getHSVmin(),home1.getHSVmax(),threshold);
     home1.trackFilteredRobot(threshold,HSV,cameraFeed);
+//------------------------------------------------------ADD TRACK HOME 2 -------------------------------------
+// New code: karla, march 15: tracking home 2
+// Track Home 2
+    // printf("\n Track Home 2\n");
+    inRange(HSV,home2.getHSVmin(),home2.getHSVmax(),threshold);
+    home2.trackFilteredRobot(threshold,HSV,cameraFeed);
 
-    // Track Away 1
- // printf("\n Track Away 1\n");
-  //  inRange(HSV,away1.getHSVmin(),away1.getHSVmax(),threshold);
-  //  away1.trackFilteredRobot(threshold,HSV,cameraFeed);
+// Track Away 1
+    // printf("\n Track Away 1\n");
+    inRange(HSV,away1.getHSVmin(),away1.getHSVmax(),threshold);
+    away1.trackFilteredRobot(threshold,HSV,cameraFeed);
 
+// Track Away 2
+    // printf("\n Track Away 1\n");
+    inRange(HSV,away2.getHSVmin(),away2.getHSVmax(),threshold);
+    away2.trackFilteredRobot(threshold,HSV,cameraFeed);
 
     // Show Field Outline
  // printf("\n Field\n");
@@ -760,26 +780,53 @@ printf("\ninitializing ros");
     imshow(windowName,cameraFeed);
 
     /***********************Ros Publisher************************************/
-
+// adding home1, home2 and ball, sending to locTopic node as a msg
     // Create message object
     robot_soccer::locations coordinates;
     // Fill message object with values
+// sending home 1 values
     coordinates.home1_x = home1.get_x_pos();
     coordinates.home1_y = home1.get_y_pos();
-    coordinates.home1_theta = home1.getAngle();
-    coordinates.ball_x = ball.get_x_pos();
-    coordinates.ball_y = ball.get_y_pos();
-    coordinates.field_width = field_width;
-    coordinates.field_height = field_height;
-    // coordinates.away1_x = away1.get_x_pos();
-    // coordinates.away1_y = away1.get_y_pos();
-    // coordinates.away1_theta = away1.getAngle();
+    //coordinates.home1_theta = home1.getAngle();
+    coordinates.home1_theta = home1.getCorrectedAngle();
+//sending home 2 values
+    coordinates.home2_x = home2.get_x_pos();
+    coordinates.home2_y = home2.get_y_pos();
+    //coordinates.home2_theta = home2.getAngle();
+    coordinates.home2_theta = home2.getCorrectedAngle();
+//sending away1 values
+    coordinates.away1_x = away1.get_x_pos();
+    coordinates.away1_y = away1.get_y_pos();
+    coordinates.away1_theta = away1.getCorrectedAngle();
+//sending away1 values
+    coordinates.away2_x = away2.get_x_pos();
+    coordinates.away2_y = away2.get_y_pos();
+    coordinates.away2_theta = away2.getCorrectedAngle();
+//sending ball values
+        coordinates.ball_x = ball.get_x_pos();
+        coordinates.ball_y = ball.get_y_pos();
+//sending field values
+        coordinates.field_width = field_width;
+        coordinates.field_height = field_height;
     coordinates.header.stamp = timestamp;
     // Print values to ROS console
-
+//printing home1
     printf("home1_x: %d\n", coordinates.home1_x);
     printf("home1_y: %d\n", coordinates.home1_y);
     printf("home1_theta: %d\n", coordinates.home1_theta);
+//printing home 2
+    printf("home2_x: %d\n", coordinates.home2_x);
+    printf("home2_y: %d\n", coordinates.home2_y);
+    printf("home2_theta: %d\n", coordinates.home2_theta);
+//printing home1
+    printf("away1_x: %d\n", coordinates.away1_x);
+    printf("away1_y: %d\n", coordinates.away1_y);
+    printf("away1_theta: %d\n", coordinates.away1_theta);
+//printing home 2
+    printf("away2_x: %d\n", coordinates.away2_x);
+    printf("away2_y: %d\n", coordinates.away2_y);
+    printf("away2_theta: %d\n", coordinates.away2_theta);
+// printing ball position
     printf("ball_x: %d\n", coordinates.ball_x);
     printf("ball_y: %d\n", coordinates.ball_y);
     printf("timeStamp header: %d\n", coordinates.header.stamp.sec);

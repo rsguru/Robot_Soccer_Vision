@@ -23,6 +23,7 @@ class Robot: public Object {
     int getOldAngle();
 
     int getAngle();
+    int getCorrectedAngle();
     void setAngle(int newAngle);
 
     // Robot methods

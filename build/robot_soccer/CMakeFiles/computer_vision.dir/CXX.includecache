@@ -6,6 +6,24 @@
 
 #IncludeRegexTransform: 
 
+/home/ecestudent/catkin_ws/devel/include/robot_soccer/locations.h
+string
+-
+vector
+-
+map
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
+-
+std_msgs/Header.h
+-
+
 /home/ecestudent/catkin_ws/src/robot_soccer/include/robot_soccer/Ball.h
 Object.h
 /home/ecestudent/catkin_ws/src/robot_soccer/include/robot_soccer/Object.h
@@ -50,10 +68,6 @@ ComputerVision.h
 Object.h
 /home/ecestudent/catkin_ws/src/robot_soccer/include/robot_soccer/Object.h
 
-/home/ecestudent/catkin_ws/src/robot_soccer/src/Ball.cpp
-Ball.h
-/home/ecestudent/catkin_ws/src/robot_soccer/src/Ball.h
-
 /home/ecestudent/catkin_ws/src/robot_soccer/src/ComputerVision.cpp
 ComputerVision.h
 /home/ecestudent/catkin_ws/src/robot_soccer/src/ComputerVision.h
@@ -67,18 +81,6 @@ Robot.h
 /home/ecestudent/catkin_ws/src/robot_soccer/src/Robot.h
 Object.h
 /home/ecestudent/catkin_ws/src/robot_soccer/src/Object.h
-
-/home/ecestudent/catkin_ws/src/robot_soccer/src/Object.cpp
-Object.h
-/home/ecestudent/catkin_ws/src/robot_soccer/src/Object.h
-
-/home/ecestudent/catkin_ws/src/robot_soccer/src/Robot.cpp
-Robot.h
-/home/ecestudent/catkin_ws/src/robot_soccer/src/Robot.h
-iostream
--
-fstream
--
 
 /opt/ros/jade/include/XmlRpcDecl.h
 ros/macros.h
@@ -721,6 +723,22 @@ ros/forwards.h
 /opt/ros/jade/include/ros/ros/forwards.h
 
 /opt/ros/jade/include/rosconsole/macros_generated.h
+
+/opt/ros/jade/include/std_msgs/Header.h
+string
+-
+vector
+-
+map
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
+-
 
 /opt/ros/jade/include/std_msgs/String.h
 string

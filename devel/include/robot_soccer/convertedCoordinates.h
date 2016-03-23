@@ -29,6 +29,15 @@ struct convertedCoordinates_
     , home1_x(0.0)
     , home1_y(0.0)
     , home1_theta(0.0)
+    , home2_x(0.0)
+    , home2_y(0.0)
+    , home2_theta(0.0)
+    , away1_x(0.0)
+    , away1_y(0.0)
+    , away1_theta(0.0)
+    , away2_x(0.0)
+    , away2_y(0.0)
+    , away2_theta(0.0)
     , ball_x(0.0)
     , ball_y(0.0)  {
     }
@@ -37,6 +46,15 @@ struct convertedCoordinates_
     , home1_x(0.0)
     , home1_y(0.0)
     , home1_theta(0.0)
+    , home2_x(0.0)
+    , home2_y(0.0)
+    , home2_theta(0.0)
+    , away1_x(0.0)
+    , away1_y(0.0)
+    , away1_theta(0.0)
+    , away2_x(0.0)
+    , away2_y(0.0)
+    , away2_theta(0.0)
     , ball_x(0.0)
     , ball_y(0.0)  {
     }
@@ -54,6 +72,33 @@ struct convertedCoordinates_
 
    typedef double _home1_theta_type;
   _home1_theta_type home1_theta;
+
+   typedef double _home2_x_type;
+  _home2_x_type home2_x;
+
+   typedef double _home2_y_type;
+  _home2_y_type home2_y;
+
+   typedef double _home2_theta_type;
+  _home2_theta_type home2_theta;
+
+   typedef double _away1_x_type;
+  _away1_x_type away1_x;
+
+   typedef double _away1_y_type;
+  _away1_y_type away1_y;
+
+   typedef double _away1_theta_type;
+  _away1_theta_type away1_theta;
+
+   typedef double _away2_x_type;
+  _away2_x_type away2_x;
+
+   typedef double _away2_y_type;
+  _away2_y_type away2_y;
+
+   typedef double _away2_theta_type;
+  _away2_theta_type away2_theta;
 
    typedef double _ball_x_type;
   _ball_x_type ball_x;
@@ -138,12 +183,12 @@ struct MD5Sum< ::robot_soccer::convertedCoordinates_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "d11bb9bc3a2bfab614d8fcc128cb2dfa";
+    return "33e0725743485cfbb7c339da37d8180a";
   }
 
   static const char* value(const ::robot_soccer::convertedCoordinates_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0xd11bb9bc3a2bfab6ULL;
-  static const uint64_t static_value2 = 0x14d8fcc128cb2dfaULL;
+  static const uint64_t static_value1 = 0x33e0725743485cfbULL;
+  static const uint64_t static_value2 = 0xb7c339da37d8180aULL;
 };
 
 template<class ContainerAllocator>
@@ -166,6 +211,15 @@ struct Definition< ::robot_soccer::convertedCoordinates_<ContainerAllocator> >
 float64 home1_x\n\
 float64 home1_y\n\
 float64 home1_theta\n\
+float64 home2_x\n\
+float64 home2_y\n\
+float64 home2_theta\n\
+float64 away1_x\n\
+float64 away1_y\n\
+float64 away1_theta\n\
+float64 away2_x\n\
+float64 away2_y\n\
+float64 away2_theta\n\
 float64 ball_x\n\
 float64 ball_y\n\
 \n\
@@ -208,6 +262,15 @@ namespace serialization
       stream.next(m.home1_x);
       stream.next(m.home1_y);
       stream.next(m.home1_theta);
+      stream.next(m.home2_x);
+      stream.next(m.home2_y);
+      stream.next(m.home2_theta);
+      stream.next(m.away1_x);
+      stream.next(m.away1_y);
+      stream.next(m.away1_theta);
+      stream.next(m.away2_x);
+      stream.next(m.away2_y);
+      stream.next(m.away2_theta);
       stream.next(m.ball_x);
       stream.next(m.ball_y);
     }
@@ -237,6 +300,24 @@ struct Printer< ::robot_soccer::convertedCoordinates_<ContainerAllocator> >
     Printer<double>::stream(s, indent + "  ", v.home1_y);
     s << indent << "home1_theta: ";
     Printer<double>::stream(s, indent + "  ", v.home1_theta);
+    s << indent << "home2_x: ";
+    Printer<double>::stream(s, indent + "  ", v.home2_x);
+    s << indent << "home2_y: ";
+    Printer<double>::stream(s, indent + "  ", v.home2_y);
+    s << indent << "home2_theta: ";
+    Printer<double>::stream(s, indent + "  ", v.home2_theta);
+    s << indent << "away1_x: ";
+    Printer<double>::stream(s, indent + "  ", v.away1_x);
+    s << indent << "away1_y: ";
+    Printer<double>::stream(s, indent + "  ", v.away1_y);
+    s << indent << "away1_theta: ";
+    Printer<double>::stream(s, indent + "  ", v.away1_theta);
+    s << indent << "away2_x: ";
+    Printer<double>::stream(s, indent + "  ", v.away2_x);
+    s << indent << "away2_y: ";
+    Printer<double>::stream(s, indent + "  ", v.away2_y);
+    s << indent << "away2_theta: ";
+    Printer<double>::stream(s, indent + "  ", v.away2_theta);
     s << indent << "ball_x: ";
     Printer<double>::stream(s, indent + "  ", v.ball_x);
     s << indent << "ball_y: ";

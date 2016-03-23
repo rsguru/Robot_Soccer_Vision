@@ -2,6 +2,15 @@ Header header
 int32 home1_x
 int32 home1_y
 int32 home1_theta
+int32 home2_x
+int32 home2_y
+int32 home2_theta
+int32 away1_x
+int32 away1_y
+int32 away1_theta
+int32 away2_x
+int32 away2_y
+int32 away2_theta
 int32 ball_x
 int32 ball_y
 int32 field_width

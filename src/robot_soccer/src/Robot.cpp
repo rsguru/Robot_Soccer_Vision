@@ -31,19 +31,20 @@ Robot::Robot(int TEAM) : Object() {
 Robot::~Robot() {
 	// TODO Auto-generated destructor stub
 }
+//Correcting the angle --
+
 
 // Draws human-readable markers on the image showing robot information
 void Robot::drawRobot(Mat &frame) {
   int x = this->get_img_x();
   int y = this->get_img_y();
   int team = this->getTeam();
-  int angle = this->getAngle();
-
+  int angle = this->getCorrectedAngle();
   int real_x = this->get_x_pos();
   int real_y = this->get_y_pos();
-  printf("\n robot x: %d \n",real_x);
-  printf("\n robot y: %d \n",real_y);
-  printf("\n angle: %d \n",angle);
+  ///printf("\n robot x: %d \n",real_x);
+  ///printf("\n robot y: %d \n",real_y);
+  printf("\n angle AFTER: %d \n",angle);
 
   // TODO there may be some error in this value to do compensating for the noise
   circle(frame,cv::Point(x,y),10, Scalar(0,0,255));
@@ -213,12 +214,13 @@ void Robot::trackFilteredRobot(Mat threshold, Mat HSV, Mat &cameraFeed) {
     }
 
 //    // Correct angle to the Robot's X-axis
-//    if (intAngle > 90) {
-//      intAngle = intAngle - 90;
-//    }
-//    else {
-//      intAngle = 270 + intAngle;
-//    }
+// uncommented this code, we need to check this --karla
+  //  if (intAngle > 90) {
+  //    intAngle = intAngle - 90;
+  //  }
+  //  else {
+  //    intAngle = 270 + intAngle;
+  //  }
 
     // Center the points of the robot
     int real_center_x;
@@ -288,6 +290,23 @@ int Robot::getAngle() {
 int Robot::getOldAngle() {
   return Robot::old_angle;
 }
+
+// correcting the angle
+//**************************Normilizing the angle, if it is between 3 degrees different, leave the old value. then it will not fluctuate between 3 degrees
+int Robot::getCorrectedAngle() {
+  int angle = this->getAngle();
+  int OldAngle = this->getOldAngle();
+  //printf("\n OLD BEFORE: %d \n",OldAngle);
+  //printf("\n angle BEFORE: %d \n",angle);
+  if(Robot::angle >= Robot::old_angle-4 && angle <= Robot::old_angle+4) {
+  //  printf("\n angle: %d , OLD: %d \n",Robot::angle,Robot::old_angle);
+    Robot::angle = Robot::old_angle;
+  }else {
+
+  }
+  return Robot::angle;
+}
+
 
 // Set which team the robot is on. 1 = HOME, 2 = AWAY
 void Robot::setTeam(int team) {
