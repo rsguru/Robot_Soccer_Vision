@@ -29,4 +29,8 @@
           BALL_X
           BALL_Y-VAL
           BALL_Y
+          FIELD_WIDTH-VAL
+          FIELD_WIDTH
+          FIELD_HEIGHT-VAL
+          FIELD_HEIGHT
 ))

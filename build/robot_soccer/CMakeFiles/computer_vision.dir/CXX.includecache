@@ -53,6 +53,8 @@ semaphore.h
 -
 queue
 -
+highgui.h
+-
 ros/ros.h
 /home/ecestudent/catkin_ws/src/robot_soccer/include/robot_soccer/ros/ros.h
 std_msgs/String.h
@@ -68,6 +70,10 @@ ComputerVision.h
 Object.h
 /home/ecestudent/catkin_ws/src/robot_soccer/include/robot_soccer/Object.h
 
+/home/ecestudent/catkin_ws/src/robot_soccer/src/Ball.cpp
+Ball.h
+/home/ecestudent/catkin_ws/src/robot_soccer/src/Ball.h
+
 /home/ecestudent/catkin_ws/src/robot_soccer/src/ComputerVision.cpp
 ComputerVision.h
 /home/ecestudent/catkin_ws/src/robot_soccer/src/ComputerVision.h
@@ -81,6 +87,18 @@ Robot.h
 /home/ecestudent/catkin_ws/src/robot_soccer/src/Robot.h
 Object.h
 /home/ecestudent/catkin_ws/src/robot_soccer/src/Object.h
+
+/home/ecestudent/catkin_ws/src/robot_soccer/src/Object.cpp
+Object.h
+/home/ecestudent/catkin_ws/src/robot_soccer/src/Object.h
+
+/home/ecestudent/catkin_ws/src/robot_soccer/src/Robot.cpp
+Robot.h
+/home/ecestudent/catkin_ws/src/robot_soccer/src/Robot.h
+iostream
+-
+fstream
+-
 
 /opt/ros/jade/include/XmlRpcDecl.h
 ros/macros.h
@@ -755,4 +773,14 @@ ros/builtin_message_traits.h
 -
 ros/message_operations.h
 -
+
+/usr/include/opencv/highgui.h
+opencv2/core/core_c.h
+/usr/include/opencv/opencv2/core/core_c.h
+opencv2/core/core.hpp
+/usr/include/opencv/opencv2/core/core.hpp
+opencv2/highgui/highgui_c.h
+/usr/include/opencv/opencv2/highgui/highgui_c.h
+opencv2/highgui/highgui.hpp
+/usr/include/opencv/opencv2/highgui/highgui.hpp
 

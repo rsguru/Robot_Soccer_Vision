@@ -81,6 +81,16 @@
     :reader ball_y
     :initarg :ball_y
     :type cl:float
+    :initform 0.0)
+   (field_width
+    :reader field_width
+    :initarg :field_width
+    :type cl:float
+    :initform 0.0)
+   (field_height
+    :reader field_height
+    :initarg :field_height
+    :type cl:float
     :initform 0.0))
 )
 
@@ -166,6 +176,16 @@
 (cl:defmethod ball_y-val ((m <convertedCoordinates>))
   (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader robot_soccer-msg:ball_y-val is deprecated.  Use robot_soccer-msg:ball_y instead.")
   (ball_y m))
+
+(cl:ensure-generic-function 'field_width-val :lambda-list '(m))
+(cl:defmethod field_width-val ((m <convertedCoordinates>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader robot_soccer-msg:field_width-val is deprecated.  Use robot_soccer-msg:field_width instead.")
+  (field_width m))
+
+(cl:ensure-generic-function 'field_height-val :lambda-list '(m))
+(cl:defmethod field_height-val ((m <convertedCoordinates>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader robot_soccer-msg:field_height-val is deprecated.  Use robot_soccer-msg:field_height instead.")
+  (field_height m))
 (cl:defmethod roslisp-msg-protocol:serialize ((msg <convertedCoordinates>) ostream)
   "Serializes a message object of type '<convertedCoordinates>"
   (roslisp-msg-protocol:serialize (cl:slot-value msg 'header) ostream)
@@ -287,6 +307,24 @@
     (cl:write-byte (cl:ldb (cl:byte 8 48) bits) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 56) bits) ostream))
   (cl:let ((bits (roslisp-utils:encode-double-float-bits (cl:slot-value msg 'ball_y))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 32) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 40) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 48) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 56) bits) ostream))
+  (cl:let ((bits (roslisp-utils:encode-double-float-bits (cl:slot-value msg 'field_width))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 32) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 40) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 48) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 56) bits) ostream))
+  (cl:let ((bits (roslisp-utils:encode-double-float-bits (cl:slot-value msg 'field_height))))
     (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
@@ -439,6 +477,26 @@
       (cl:setf (cl:ldb (cl:byte 8 48) bits) (cl:read-byte istream))
       (cl:setf (cl:ldb (cl:byte 8 56) bits) (cl:read-byte istream))
     (cl:setf (cl:slot-value msg 'ball_y) (roslisp-utils:decode-double-float-bits bits)))
+    (cl:let ((bits 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 32) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 40) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 48) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 56) bits) (cl:read-byte istream))
+    (cl:setf (cl:slot-value msg 'field_width) (roslisp-utils:decode-double-float-bits bits)))
+    (cl:let ((bits 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 32) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 40) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 48) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 56) bits) (cl:read-byte istream))
+    (cl:setf (cl:slot-value msg 'field_height) (roslisp-utils:decode-double-float-bits bits)))
   msg
 )
 (cl:defmethod roslisp-msg-protocol:ros-datatype ((msg (cl:eql '<convertedCoordinates>)))
@@ -449,19 +507,21 @@
   "robot_soccer/convertedCoordinates")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<convertedCoordinates>)))
   "Returns md5sum for a message object of type '<convertedCoordinates>"
-  "33e0725743485cfbb7c339da37d8180a")
+  "238c2852b3b57068402a18a71ad7a031")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'convertedCoordinates)))
   "Returns md5sum for a message object of type 'convertedCoordinates"
-  "33e0725743485cfbb7c339da37d8180a")
+  "238c2852b3b57068402a18a71ad7a031")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<convertedCoordinates>)))
   "Returns full string definition for message of type '<convertedCoordinates>"
-  (cl:format cl:nil "Header header~%float64 home1_x~%float64 home1_y~%float64 home1_theta~%float64 home2_x~%float64 home2_y~%float64 home2_theta~%float64 away1_x~%float64 away1_y~%float64 away1_theta~%float64 away2_x~%float64 away2_y~%float64 away2_theta~%float64 ball_x~%float64 ball_y~%~%================================================================================~%MSG: std_msgs/Header~%# Standard metadata for higher-level stamped data types.~%# This is generally used to communicate timestamped data ~%# in a particular coordinate frame.~%# ~%# sequence ID: consecutively increasing ID ~%uint32 seq~%#Two-integer timestamp that is expressed as:~%# * stamp.sec: seconds (stamp_secs) since epoch (in Python the variable is called 'secs')~%# * stamp.nsec: nanoseconds since stamp_secs (in Python the variable is called 'nsecs')~%# time-handling sugar is provided by the client library~%time stamp~%#Frame this data is associated with~%# 0: no frame~%# 1: global frame~%string frame_id~%~%~%"))
+  (cl:format cl:nil "Header header~%float64 home1_x~%float64 home1_y~%float64 home1_theta~%float64 home2_x~%float64 home2_y~%float64 home2_theta~%float64 away1_x~%float64 away1_y~%float64 away1_theta~%float64 away2_x~%float64 away2_y~%float64 away2_theta~%float64 ball_x~%float64 ball_y~%float64 field_width~%float64 field_height~%~%================================================================================~%MSG: std_msgs/Header~%# Standard metadata for higher-level stamped data types.~%# This is generally used to communicate timestamped data ~%# in a particular coordinate frame.~%# ~%# sequence ID: consecutively increasing ID ~%uint32 seq~%#Two-integer timestamp that is expressed as:~%# * stamp.sec: seconds (stamp_secs) since epoch (in Python the variable is called 'secs')~%# * stamp.nsec: nanoseconds since stamp_secs (in Python the variable is called 'nsecs')~%# time-handling sugar is provided by the client library~%time stamp~%#Frame this data is associated with~%# 0: no frame~%# 1: global frame~%string frame_id~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'convertedCoordinates)))
   "Returns full string definition for message of type 'convertedCoordinates"
-  (cl:format cl:nil "Header header~%float64 home1_x~%float64 home1_y~%float64 home1_theta~%float64 home2_x~%float64 home2_y~%float64 home2_theta~%float64 away1_x~%float64 away1_y~%float64 away1_theta~%float64 away2_x~%float64 away2_y~%float64 away2_theta~%float64 ball_x~%float64 ball_y~%~%================================================================================~%MSG: std_msgs/Header~%# Standard metadata for higher-level stamped data types.~%# This is generally used to communicate timestamped data ~%# in a particular coordinate frame.~%# ~%# sequence ID: consecutively increasing ID ~%uint32 seq~%#Two-integer timestamp that is expressed as:~%# * stamp.sec: seconds (stamp_secs) since epoch (in Python the variable is called 'secs')~%# * stamp.nsec: nanoseconds since stamp_secs (in Python the variable is called 'nsecs')~%# time-handling sugar is provided by the client library~%time stamp~%#Frame this data is associated with~%# 0: no frame~%# 1: global frame~%string frame_id~%~%~%"))
+  (cl:format cl:nil "Header header~%float64 home1_x~%float64 home1_y~%float64 home1_theta~%float64 home2_x~%float64 home2_y~%float64 home2_theta~%float64 away1_x~%float64 away1_y~%float64 away1_theta~%float64 away2_x~%float64 away2_y~%float64 away2_theta~%float64 ball_x~%float64 ball_y~%float64 field_width~%float64 field_height~%~%================================================================================~%MSG: std_msgs/Header~%# Standard metadata for higher-level stamped data types.~%# This is generally used to communicate timestamped data ~%# in a particular coordinate frame.~%# ~%# sequence ID: consecutively increasing ID ~%uint32 seq~%#Two-integer timestamp that is expressed as:~%# * stamp.sec: seconds (stamp_secs) since epoch (in Python the variable is called 'secs')~%# * stamp.nsec: nanoseconds since stamp_secs (in Python the variable is called 'nsecs')~%# time-handling sugar is provided by the client library~%time stamp~%#Frame this data is associated with~%# 0: no frame~%# 1: global frame~%string frame_id~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <convertedCoordinates>))
   (cl:+ 0
      (roslisp-msg-protocol:serialization-length (cl:slot-value msg 'header))
+     8
+     8
      8
      8
      8
@@ -495,4 +555,6 @@
     (cl:cons ':away2_theta (away2_theta msg))
     (cl:cons ':ball_x (ball_x msg))
     (cl:cons ':ball_y (ball_y msg))
+    (cl:cons ':field_width (field_width msg))
+    (cl:cons ':field_height (field_height msg))
 ))

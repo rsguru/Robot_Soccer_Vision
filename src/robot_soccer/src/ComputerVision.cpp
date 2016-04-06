@@ -18,7 +18,7 @@
 #include "Object.h"
 
 using namespace cv;
-
+using namespace std;
 // Change this parameter to determine which team we are on!
 // Either set it to HOME or AWAY
 int TEAM = HOME;
@@ -323,7 +323,6 @@ void undistortImage(Mat &source) {
   remap(temp, source, map1, map2, INTER_LINEAR);
 }
 
-
 void createHSVTrackbars() {
 	//create window for trackbars
 	namedWindow(trackbarWindowName,0);
@@ -338,6 +337,15 @@ void createHSVTrackbars() {
 	createTrackbar( "S_MAX", trackbarWindowName, &S_MAX, S_MAX, on_trackbar );
 	createTrackbar( "V_MIN", trackbarWindowName, &V_MIN, V_MAX, on_trackbar );
 	createTrackbar( "V_MAX", trackbarWindowName, &V_MAX, V_MAX, on_trackbar );
+  // custom_data_t my_data = { 0 };
+  // createButton("button5",my_button_cb,&my_data,CV_PUSH_BUTTON,0);
+  // pthread_mutex_lock(&my_data.mtx);
+  //
+  // std::cout << "The state retrieved by the callback is: " << my_data.state << std::endl;
+  //
+  //   // unlock mutex
+  // pthread_mutex_unlock(&my_data.mtx);
+  // cvCreateButton("button6",callbackButton2,NULL,CV_RADIOBOX,1);
 }
 
 //Converts from image coordinates to field coordinates
@@ -411,7 +419,7 @@ void calibrateField(VideoCapture capture) {
   while (1) {
     capture.read(cameraFeed);
     //blur the image
-//    blurImage(cameraFeed);
+    blurImage(cameraFeed);
     //undistortImage(cameraFeed);
 
     // Wait for user to set values
@@ -462,11 +470,145 @@ void runFullCalibration(VideoCapture capture) {
   restoreSettings();
   calibrateField(capture);
   ball.calibrateBall(capture);
+
+  askForHome1();
   home1.calibrateRobot(capture);
+  askForHome2();
   home2.calibrateRobot(capture);
+
+  askForAway1();
   away1.calibrateRobot(capture);
+  askForAway2();
   away2.calibrateRobot(capture);
   saveSettings();
+}
+
+void askForHome1(){
+  int input = 5;
+  printf("HOME\n");
+  printf("What preset color do you want for the home1?\n");
+  printf("Blue(1), Orange(2), Purple(3), Green(4), none(5)\n");
+  cin >> input;
+  switch(input){
+    case 1 :
+      //set color Blue
+      home1.setHSVmin(Scalar(91, 164, 222));
+      home1.setHSVmax(Scalar(95, 256, 256));
+      break;
+    case 2:
+      // set color Orange
+      home1.setHSVmin(Scalar(8, 95, 234));
+      home1.setHSVmax(Scalar(20, 149, 256));
+      break;
+    case 3:
+      // set color Purple
+      home1.setHSVmin(Scalar(117, 16, 186));
+      home1.setHSVmax(Scalar(149, 99, 256));
+      break;
+    case 4:
+      //set color Green
+      home1.setHSVmin(Scalar(66, 12, 227));
+      home1.setHSVmax(Scalar(112, 64, 256));
+      break;
+    default:
+      break;
+  }
+}
+
+void askForHome2(){
+  int input = 5;
+  printf("HOME\n");
+  printf("What preset color do you want for the home2?\n");
+  printf("Blue(1), Orange(2), Purple(3), Green(4), none(5)\n");
+  cin >> input;
+  switch(input){
+    case 1 :
+      //set color Blue
+      home2.setHSVmin(Scalar(91, 164, 222));
+      home2.setHSVmax(Scalar(95, 256, 256));
+      break;
+    case 2:
+      // set color Orange
+      home2.setHSVmin(Scalar(8, 95, 234));
+      home2.setHSVmax(Scalar(20, 149, 256));
+      break;
+    case 3:
+      // set color Purple
+      home2.setHSVmin(Scalar(117, 16, 186));
+      home2.setHSVmax(Scalar(149, 99, 256));
+      break;
+    case 4:
+      //set color Green
+      home2.setHSVmin(Scalar(66, 12, 227));
+      home2.setHSVmax(Scalar(112, 64, 256));
+      break;
+    default:
+      break; // no color has been chosen or the number 5 has been chosen (5 = none)
+  }
+}
+
+void askForAway1(){
+  int input = 5;
+  printf("AWAY\n");
+  printf("What preset color do you want for the away1?\n");
+  printf("Blue(1), Orange(2), Purple(3), Green(4), none(5)\n");
+  cin >> input;
+  switch(input){
+    case 1 :
+      //set color Blue
+      away1.setHSVmin(Scalar(91, 164, 222));
+      away1.setHSVmax(Scalar(95, 256, 256));
+      break;
+    case 2:
+      // set color Orange
+      away1.setHSVmin(Scalar(8, 95, 234));
+      away1.setHSVmax(Scalar(20, 149, 256));
+      break;
+    case 3:
+      // set color Purple
+      away1.setHSVmin(Scalar(117, 16, 186));
+      away1.setHSVmax(Scalar(149, 99, 256));
+      break;
+    case 4:
+      //set color Green
+      away1.setHSVmin(Scalar(66, 12, 227));
+      away1.setHSVmax(Scalar(112, 64, 256));
+      break;
+    default:
+      break;
+  }
+}
+
+void askForAway2(){
+  int input = 5;
+  printf("AWAY\n");
+  printf("What preset color do you want for the away2?\n");
+  printf("Blue(1), Orange(2), Purple(3), Green(4), none(5)\n");
+  cin >> input;
+  switch(input){
+    case 1 :
+      //set color Blue
+      away2.setHSVmin(Scalar(91, 164, 222));
+      away2.setHSVmax(Scalar(95, 256, 256));
+      break;
+    case 2:
+      // set color Orange
+      away2.setHSVmin(Scalar(8, 95, 234));
+      away2.setHSVmax(Scalar(20, 149, 256));
+      break;
+    case 3:
+      // set color Purple
+      away2.setHSVmin(Scalar(117, 16, 186));
+      away2.setHSVmax(Scalar(149, 99, 256));
+      break;
+    case 4:
+      //set color Green
+      away2.setHSVmin(Scalar(66, 12, 227));
+      away2.setHSVmax(Scalar(112, 64, 256));
+      break;
+    default:
+      break; // no color has been chosen or the number 5 has been chosen (5 = none)
+  }
 }
 
 // Special function for both getting the next image and reading the timestamp
@@ -557,7 +699,7 @@ system("curl -s http://192.168.1.48:8080/stream?topic=/image&dummy=param.mjpg > 
 //This thread converts JPEGs into Mats and undistorts them.
 void * processorThread(void * notUsed){
 printf("\n in processorThread");
-	const string videoStreamAddress = "http://192.168.1.79:8080/stream?topic=/image&dummy=param.mjpg";
+	const string videoStreamAddress = "http://192.168.1.78:8080/stream?topic=/image&dummy=param.mjpg";
 
 	VideoCapture capture;
 
@@ -580,7 +722,7 @@ printf("\n in processorThread");
     //if (value < MIN_BUFFER_SIZE){
       //frameMat.timestamp = frameRaw.timestamp;
       capture.read(frameMat.image); //= imdecode(frameRaw.image, CV_LOAD_IMAGE_COLOR);
-//      blurImage(frameMat.image);
+      blurImage(frameMat.image);
      //undistortImage(frameMat.image);
       frameMatFifo.push(frameMat);
       sem_post(&frameMatSema);
@@ -650,7 +792,7 @@ int main(int argc, char* argv[]) {
 
 	//video capture object to acquire webcam feed  http://192.168.1.90/mjpg/video.mjpg
 	//const string videoStreamAddress = "http://192.168.1.10:8080/stream?topic=/image&dummy=param.mjpg";
-	const string videoStreamAddress = "http://192.168.1.79:8080/stream?topic=/image&dummy=param.mjpg";
+	const string videoStreamAddress = "http://192.168.1.78:8080/stream?topic=/image&dummy=param.mjpg";
 
 	VideoCapture capture;
 

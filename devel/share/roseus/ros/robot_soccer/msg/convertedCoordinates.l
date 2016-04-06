@@ -16,7 +16,7 @@
 
 (defclass robot_soccer::convertedCoordinates
   :super ros::object
-  :slots (_header _home1_x _home1_y _home1_theta _home2_x _home2_y _home2_theta _away1_x _away1_y _away1_theta _away2_x _away2_y _away2_theta _ball_x _ball_y ))
+  :slots (_header _home1_x _home1_y _home1_theta _home2_x _home2_y _home2_theta _away1_x _away1_y _away1_theta _away2_x _away2_y _away2_theta _ball_x _ball_y _field_width _field_height ))
 
 (defmethod robot_soccer::convertedCoordinates
   (:init
@@ -36,6 +36,8 @@
     ((:away2_theta __away2_theta) 0.0)
     ((:ball_x __ball_x) 0.0)
     ((:ball_y __ball_y) 0.0)
+    ((:field_width __field_width) 0.0)
+    ((:field_height __field_height) 0.0)
     )
    (send-super :init)
    (setq _header __header)
@@ -53,6 +55,8 @@
    (setq _away2_theta (float __away2_theta))
    (setq _ball_x (float __ball_x))
    (setq _ball_y (float __ball_y))
+   (setq _field_width (float __field_width))
+   (setq _field_height (float __field_height))
    self)
   (:header
    (&rest __header)
@@ -103,6 +107,12 @@
   (:ball_y
    (&optional __ball_y)
    (if __ball_y (setq _ball_y __ball_y)) _ball_y)
+  (:field_width
+   (&optional __field_width)
+   (if __field_width (setq _field_width __field_width)) _field_width)
+  (:field_height
+   (&optional __field_height)
+   (if __field_height (setq _field_height __field_height)) _field_height)
   (:serialization-length
    ()
    (+
@@ -135,6 +145,10 @@
     ;; float64 _ball_x
     8
     ;; float64 _ball_y
+    8
+    ;; float64 _field_width
+    8
+    ;; float64 _field_height
     8
     ))
   (:serialize
@@ -171,6 +185,10 @@
        (sys::poke _ball_x (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
      ;; float64 _ball_y
        (sys::poke _ball_y (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
+     ;; float64 _field_width
+       (sys::poke _field_width (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
+     ;; float64 _field_height
+       (sys::poke _field_height (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
      ;;
      (if (null strm) (get-output-stream-string s))))
   (:deserialize
@@ -205,11 +223,15 @@
      (setq _ball_x (sys::peek buf ptr- :double)) (incf ptr- 8)
    ;; float64 _ball_y
      (setq _ball_y (sys::peek buf ptr- :double)) (incf ptr- 8)
+   ;; float64 _field_width
+     (setq _field_width (sys::peek buf ptr- :double)) (incf ptr- 8)
+   ;; float64 _field_height
+     (setq _field_height (sys::peek buf ptr- :double)) (incf ptr- 8)
    ;;
    self)
   )
 
-(setf (get robot_soccer::convertedCoordinates :md5sum-) "33e0725743485cfbb7c339da37d8180a")
+(setf (get robot_soccer::convertedCoordinates :md5sum-) "238c2852b3b57068402a18a71ad7a031")
 (setf (get robot_soccer::convertedCoordinates :datatype-) "robot_soccer/convertedCoordinates")
 (setf (get robot_soccer::convertedCoordinates :definition-)
       "Header header
@@ -227,6 +249,8 @@ float64 away2_y
 float64 away2_theta
 float64 ball_x
 float64 ball_y
+float64 field_width
+float64 field_height
 
 ================================================================================
 MSG: std_msgs/Header
@@ -250,6 +274,6 @@ string frame_id
 
 
 
-(provide :robot_soccer/convertedCoordinates "33e0725743485cfbb7c339da37d8180a")
+(provide :robot_soccer/convertedCoordinates "238c2852b3b57068402a18a71ad7a031")
 
 

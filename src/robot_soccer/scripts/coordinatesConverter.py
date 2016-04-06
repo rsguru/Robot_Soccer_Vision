@@ -30,6 +30,13 @@ class BallLocation:
     # self.magnitude = magnitude
     # self.angle = angle
 
+class FieldLocation:
+  def __init__(self, timestamp = 0, width = 0.0, height = 0.0):
+    self.width = width
+    self.height = height
+    # self.magnitude = magnitude
+    # self.angle = angle
+
 # Global Variables for initialization
 class coordinatesConverter:
   def __init__(self):
@@ -38,6 +45,7 @@ class coordinatesConverter:
     self.away1 = RobotLocation()
     self.away2 = RobotLocation()
     self.ball = BallLocation()
+    self.field = FieldLocation()
 
   def callback(self, data):
       #adding home 2 --karla
@@ -63,6 +71,10 @@ class coordinatesConverter:
 #BALL
     self.ball.x = pixelToMeter(float(data.ball_x))#float(data.ball_x)/PIXELS_PER_METER
     self.ball.y = pixelToMeter(float(data.ball_y))#float(data.ball_y)/PIXELS_PER_METER
+
+#field
+    self.field.width = pixelToMeter(float(data.field_width))#float(data.ball_x)/PIXELS_PER_METER
+    self.field.height = pixelToMeter(float(data.field_height))#float(data.ball_y)/PIXELS_PER_METER
     #rospy.loginfo("home1x: %f, home1theta %f" % (self.home1.x, self.home1.theta))
     #creating the msg in order to pub as a whole
     msg = convertedCoordinates()
@@ -80,6 +92,8 @@ class coordinatesConverter:
     msg.away2_theta = self.away2.theta
     msg.ball_x = self.ball.x
     msg.ball_y = self.ball.y
+    msg.field_width = self.field.width
+    msg.field_height = self.field.height
     #publish to the msg
     self.pub.publish(msg)
     rospy.loginfo(msg)

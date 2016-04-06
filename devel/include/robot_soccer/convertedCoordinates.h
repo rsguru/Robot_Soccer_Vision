@@ -39,7 +39,9 @@ struct convertedCoordinates_
     , away2_y(0.0)
     , away2_theta(0.0)
     , ball_x(0.0)
-    , ball_y(0.0)  {
+    , ball_y(0.0)
+    , field_width(0.0)
+    , field_height(0.0)  {
     }
   convertedCoordinates_(const ContainerAllocator& _alloc)
     : header(_alloc)
@@ -56,7 +58,9 @@ struct convertedCoordinates_
     , away2_y(0.0)
     , away2_theta(0.0)
     , ball_x(0.0)
-    , ball_y(0.0)  {
+    , ball_y(0.0)
+    , field_width(0.0)
+    , field_height(0.0)  {
     }
 
 
@@ -105,6 +109,12 @@ struct convertedCoordinates_
 
    typedef double _ball_y_type;
   _ball_y_type ball_y;
+
+   typedef double _field_width_type;
+  _field_width_type field_width;
+
+   typedef double _field_height_type;
+  _field_height_type field_height;
 
 
 
@@ -183,12 +193,12 @@ struct MD5Sum< ::robot_soccer::convertedCoordinates_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "33e0725743485cfbb7c339da37d8180a";
+    return "238c2852b3b57068402a18a71ad7a031";
   }
 
   static const char* value(const ::robot_soccer::convertedCoordinates_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x33e0725743485cfbULL;
-  static const uint64_t static_value2 = 0xb7c339da37d8180aULL;
+  static const uint64_t static_value1 = 0x238c2852b3b57068ULL;
+  static const uint64_t static_value2 = 0x402a18a71ad7a031ULL;
 };
 
 template<class ContainerAllocator>
@@ -222,6 +232,8 @@ float64 away2_y\n\
 float64 away2_theta\n\
 float64 ball_x\n\
 float64 ball_y\n\
+float64 field_width\n\
+float64 field_height\n\
 \n\
 ================================================================================\n\
 MSG: std_msgs/Header\n\
@@ -273,6 +285,8 @@ namespace serialization
       stream.next(m.away2_theta);
       stream.next(m.ball_x);
       stream.next(m.ball_y);
+      stream.next(m.field_width);
+      stream.next(m.field_height);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER;
@@ -322,6 +336,10 @@ struct Printer< ::robot_soccer::convertedCoordinates_<ContainerAllocator> >
     Printer<double>::stream(s, indent + "  ", v.ball_x);
     s << indent << "ball_y: ";
     Printer<double>::stream(s, indent + "  ", v.ball_y);
+    s << indent << "field_width: ";
+    Printer<double>::stream(s, indent + "  ", v.field_width);
+    s << indent << "field_height: ";
+    Printer<double>::stream(s, indent + "  ", v.field_height);
   }
 };
 

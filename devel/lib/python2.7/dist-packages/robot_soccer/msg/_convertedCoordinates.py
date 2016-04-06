@@ -8,7 +8,7 @@ import struct
 import std_msgs.msg
 
 class convertedCoordinates(genpy.Message):
-  _md5sum = "33e0725743485cfbb7c339da37d8180a"
+  _md5sum = "238c2852b3b57068402a18a71ad7a031"
   _type = "robot_soccer/convertedCoordinates"
   _has_header = True #flag to mark the presence of a Header object
   _full_text = """Header header
@@ -26,6 +26,8 @@ float64 away2_y
 float64 away2_theta
 float64 ball_x
 float64 ball_y
+float64 field_width
+float64 field_height
 
 ================================================================================
 MSG: std_msgs/Header
@@ -46,8 +48,8 @@ time stamp
 string frame_id
 
 """
-  __slots__ = ['header','home1_x','home1_y','home1_theta','home2_x','home2_y','home2_theta','away1_x','away1_y','away1_theta','away2_x','away2_y','away2_theta','ball_x','ball_y']
-  _slot_types = ['std_msgs/Header','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64']
+  __slots__ = ['header','home1_x','home1_y','home1_theta','home2_x','home2_y','home2_theta','away1_x','away1_y','away1_theta','away2_x','away2_y','away2_theta','ball_x','ball_y','field_width','field_height']
+  _slot_types = ['std_msgs/Header','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64','float64']
 
   def __init__(self, *args, **kwds):
     """
@@ -57,7 +59,7 @@ string frame_id
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       header,home1_x,home1_y,home1_theta,home2_x,home2_y,home2_theta,away1_x,away1_y,away1_theta,away2_x,away2_y,away2_theta,ball_x,ball_y
+       header,home1_x,home1_y,home1_theta,home2_x,home2_y,home2_theta,away1_x,away1_y,away1_theta,away2_x,away2_y,away2_theta,ball_x,ball_y,field_width,field_height
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -96,6 +98,10 @@ string frame_id
         self.ball_x = 0.
       if self.ball_y is None:
         self.ball_y = 0.
+      if self.field_width is None:
+        self.field_width = 0.
+      if self.field_height is None:
+        self.field_height = 0.
     else:
       self.header = std_msgs.msg.Header()
       self.home1_x = 0.
@@ -112,6 +118,8 @@ string frame_id
       self.away2_theta = 0.
       self.ball_x = 0.
       self.ball_y = 0.
+      self.field_width = 0.
+      self.field_height = 0.
 
   def _get_types(self):
     """
@@ -137,7 +145,7 @@ string frame_id
       else:
         buff.write(struct.pack('<I%ss'%length, length, _x))
       _x = self
-      buff.write(_struct_14d.pack(_x.home1_x, _x.home1_y, _x.home1_theta, _x.home2_x, _x.home2_y, _x.home2_theta, _x.away1_x, _x.away1_y, _x.away1_theta, _x.away2_x, _x.away2_y, _x.away2_theta, _x.ball_x, _x.ball_y))
+      buff.write(_struct_16d.pack(_x.home1_x, _x.home1_y, _x.home1_theta, _x.home2_x, _x.home2_y, _x.home2_theta, _x.away1_x, _x.away1_y, _x.away1_theta, _x.away2_x, _x.away2_y, _x.away2_theta, _x.ball_x, _x.ball_y, _x.field_width, _x.field_height))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(_x))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(_x))))
 
@@ -165,8 +173,8 @@ string frame_id
         self.header.frame_id = str[start:end]
       _x = self
       start = end
-      end += 112
-      (_x.home1_x, _x.home1_y, _x.home1_theta, _x.home2_x, _x.home2_y, _x.home2_theta, _x.away1_x, _x.away1_y, _x.away1_theta, _x.away2_x, _x.away2_y, _x.away2_theta, _x.ball_x, _x.ball_y,) = _struct_14d.unpack(str[start:end])
+      end += 128
+      (_x.home1_x, _x.home1_y, _x.home1_theta, _x.home2_x, _x.home2_y, _x.home2_theta, _x.away1_x, _x.away1_y, _x.away1_theta, _x.away2_x, _x.away2_y, _x.away2_theta, _x.ball_x, _x.ball_y, _x.field_width, _x.field_height,) = _struct_16d.unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
@@ -191,7 +199,7 @@ string frame_id
       else:
         buff.write(struct.pack('<I%ss'%length, length, _x))
       _x = self
-      buff.write(_struct_14d.pack(_x.home1_x, _x.home1_y, _x.home1_theta, _x.home2_x, _x.home2_y, _x.home2_theta, _x.away1_x, _x.away1_y, _x.away1_theta, _x.away2_x, _x.away2_y, _x.away2_theta, _x.ball_x, _x.ball_y))
+      buff.write(_struct_16d.pack(_x.home1_x, _x.home1_y, _x.home1_theta, _x.home2_x, _x.home2_y, _x.home2_theta, _x.away1_x, _x.away1_y, _x.away1_theta, _x.away2_x, _x.away2_y, _x.away2_theta, _x.ball_x, _x.ball_y, _x.field_width, _x.field_height))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(_x))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(_x))))
 
@@ -220,12 +228,12 @@ string frame_id
         self.header.frame_id = str[start:end]
       _x = self
       start = end
-      end += 112
-      (_x.home1_x, _x.home1_y, _x.home1_theta, _x.home2_x, _x.home2_y, _x.home2_theta, _x.away1_x, _x.away1_y, _x.away1_theta, _x.away2_x, _x.away2_y, _x.away2_theta, _x.ball_x, _x.ball_y,) = _struct_14d.unpack(str[start:end])
+      end += 128
+      (_x.home1_x, _x.home1_y, _x.home1_theta, _x.home2_x, _x.home2_y, _x.home2_theta, _x.away1_x, _x.away1_y, _x.away1_theta, _x.away2_x, _x.away2_y, _x.away2_theta, _x.ball_x, _x.ball_y, _x.field_width, _x.field_height,) = _struct_16d.unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
 
 _struct_I = genpy.struct_I
+_struct_16d = struct.Struct("<16d")
 _struct_3I = struct.Struct("<3I")
-_struct_14d = struct.Struct("<14d")

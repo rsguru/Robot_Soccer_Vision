@@ -20,7 +20,7 @@
 #include <pthread.h>
 #include <semaphore.h>
 #include <queue>
-
+#include <highgui.h>
 #include "ros/ros.h"
 #include "std_msgs/String.h"
 #include "robot_soccer/locations.h"
@@ -113,5 +113,11 @@ cv::Point convertCoordinates(cv::Point imageCoordinates);
 void on_trackbar( int, void* );
 void morphOps(cv::Mat &thresh);
 void undistortImage(cv::Mat &source);
+void callbackButton2();
+void callbackButton1();
+void askForHome1();
+void askForHome2();
+void askForAway1();
+void askForAway2();
 
 #endif /* COMPUTERVISION_H_ */

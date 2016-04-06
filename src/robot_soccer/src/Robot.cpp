@@ -17,6 +17,7 @@ Robot::Robot(int TEAM) : Object() {
   Robot::team = TEAM;
   Robot::angle = 0;
   Robot::old_angle = 0;
+  //Robot::number = 1;
   // Hard code team colors here
   if (team == HOME) {
     setHSVmin(cv::Scalar(0,0,235));
@@ -44,7 +45,7 @@ void Robot::drawRobot(Mat &frame) {
   int real_y = this->get_y_pos();
   ///printf("\n robot x: %d \n",real_x);
   ///printf("\n robot y: %d \n",real_y);
-  printf("\n angle AFTER: %d \n",angle);
+//  printf("\n angle AFTER: %d \n",angle);
 
   // TODO there may be some error in this value to do compensating for the noise
   circle(frame,cv::Point(x,y),10, Scalar(0,0,255));
@@ -214,7 +215,6 @@ void Robot::trackFilteredRobot(Mat threshold, Mat HSV, Mat &cameraFeed) {
     }
 
 //    // Correct angle to the Robot's X-axis
-// uncommented this code, we need to check this --karla
   //  if (intAngle > 90) {
   //    intAngle = intAngle - 90;
   //  }
